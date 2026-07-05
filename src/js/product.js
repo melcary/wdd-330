@@ -5,15 +5,13 @@ import { getLocalStorage } from "./utils.mjs";
 const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
-  
   let cart = getLocalStorage("so-cart");
   if (cart === null) {
     cart = [];
   }
-  
-  cart.push(product);
-  setLocalStorage("so-cart", cart)
 
+  cart.push(product);
+  setLocalStorage("so-cart", cart);
 }
 
 // add to cart button event handler
