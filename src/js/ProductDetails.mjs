@@ -3,8 +3,8 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
-    this.dataSource = dataSource;
     this.product = {};
+    this.dataSource = dataSource;
     }
 async init() {
     this.product = await this.dataSource.findProductById(this.productId);
@@ -17,15 +17,11 @@ async init() {
   }
 
   addProductToCart() {
-     let cart = getLocalStorage("so-cart");
+    const cartItems = getLocalStorage("so-cart") || [];
 
-    if (!cart) {
-      cart = [];
-    }
+    cartItems.push(this.product);
 
-    cart.push(this.product);
-
-    setLocalStorage("so-cart", cart);
+    setLocalStorage("so-cart", cartItems);
   }
 
   renderProductDetails() {
@@ -36,7 +32,6 @@ async init() {
 
 function productDetailsTemplate(product) {
   document.querySelector("h2").textContent = product.Brand.Name;
-
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("product-image");
@@ -44,12 +39,8 @@ function productDetailsTemplate(product) {
   productImage.alt = product.NameWithoutBrand;
 
   document.getElementById("product-price").textContent = product.FinalPrice;
-
-  document.getElementById("product-color").textContent =
-    product.Colors[0].ColorName;
-
-  document.getElementById("product-desc").innerHTML =
-    product.DescriptionHtmlSimple;
+  document.getElementById("product-color").textContent = product.Colors[0].colorName;
+  document.getElementById("product-desc").innerHTML = product.DescriptionHtmlSimple;
 
   document.getElementById("addToCart").dataset.id = product.Id;
 }
