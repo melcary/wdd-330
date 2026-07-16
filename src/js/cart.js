@@ -3,7 +3,13 @@ import { getLocalStorage,setLocalStorage } from "./utils.mjs";
 const productList = document.querySelector(".product-list")
 function renderCartContents(){
   try {
-    const cartItems = getLocalStorage("so-cart");
+     const cartItems = getLocalStorage("so-cart");
+     if (!cartItems || cartItems.length === 0) {
+        document.querySelector(".product-list").innerHTML =
+         "<li class='cart-card divider'>Your cart is empty.</li>";
+         return;
+       }
+    
     let index = 0;
     const htmlItems = cartItems.map((item) => {
       index++
@@ -13,9 +19,8 @@ function renderCartContents(){
   } 
   catch (error) {
     console.log(error.message)
-    productList.innerHTML = `No item in cart yet`;
+    productList.innerHTML = "<li class='cart-card divider'>An error occured.</li>";
   }
-}
 
 function cartItemTemplate(item,num) {
   const newItem = `<li class="cart-card divider" id="item-${num}">
