@@ -16,21 +16,24 @@ async init() {
       .addEventListener("click", this.addProductToCart.bind(this));
   }
 
-  addProductToCart() {
-     let cart = getLocalStorage("so-cart");
+ addProductToCart() {
+  let cart = getLocalStorage("so-cart");
 
-    if (!cart) {
-      cart = [];
-    }
+  if (!cart) {
+    cart = [];
+  }
 
+  const existingItem = cart.find((item) => item.Id === this.product.Id);
+
+  if (existingItem) {
+    existingItem.Quantity = (existingItem.Quantity || 1) + 1;
+  } else {
+    this.product.Quantity = 1;
     cart.push(this.product);
-
-    setLocalStorage("so-cart", cart);
   }
 
-  renderProductDetails() {
-    productDetailsTemplate(this.product);
-  }
+  setLocalStorage("so-cart", cart);
+}
 }
 
 
