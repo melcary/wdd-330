@@ -1,4 +1,5 @@
-import { getLocalStorage,setLocalStorage } from "./utils.mjs";
+import { getLocalStorage,setLocalStorage, loadHeaderFooter} from "./utils.mjs";
+loadHeaderFooter();
 
 const productList = document.querySelector(".product-list")
 function renderCartContents(){
@@ -20,8 +21,7 @@ function renderCartContents(){
   catch (error) {
     console.log(error.message)
     productList.innerHTML = "<li class='cart-card divider'>An error occured.</li>";
-  }
-}
+
 
 function cartItemTemplate(item,num) {
   const newItem = `<li class="cart-card divider" id="item-${num}">
@@ -55,7 +55,6 @@ function attachListenerForBtns(){
       removeItem(btn)
     })
 });
-
 }
 function removeItem(btn){
     let itemId = btn.querySelector("span").textContent;
