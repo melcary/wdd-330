@@ -21,7 +21,8 @@ function renderCartContents(){
   catch (error) {
     console.log(error.message)
     productList.innerHTML = "<li class='cart-card divider'>An error occured.</li>";
-
+  }
+}
 
 function cartItemTemplate(item,num) {
   const newItem = `<li class="cart-card divider" id="item-${num}">
