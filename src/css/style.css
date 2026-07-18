@@ -240,16 +240,15 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
-.remove{
+.remove {
   grid-row: 1;
   grid-column: 4/5;
   border: 0;
   background: 0;
   color: var(--primary-color);
-  
 }
-.remove::before{
-  content: '\00d7';
+.remove::before {
+  content: "\00d7";
   font-size: 2rem;
 }
 

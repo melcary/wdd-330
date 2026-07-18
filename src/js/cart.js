@@ -1,30 +1,34 @@
-import { getLocalStorage,setLocalStorage, loadHeaderFooter} from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+} from "./utils.mjs";
 loadHeaderFooter();
 
-const productList = document.querySelector(".product-list")
-function renderCartContents(){
+const productList = document.querySelector(".product-list");
+function renderCartContents() {
   try {
-     const cartItems = getLocalStorage("so-cart");
-     if (!cartItems || cartItems.length === 0) {
-        document.querySelector(".product-list").innerHTML =
-         "<li class='cart-card divider'>Your cart is empty.</li>";
-         return;
-       }
-    
+    const cartItems = getLocalStorage("so-cart");
+    if (!cartItems || cartItems.length === 0) {
+      document.querySelector(".product-list").innerHTML =
+        "<li class='cart-card divider'>Your cart is empty.</li>";
+      return;
+    }
+
     let index = 0;
     const htmlItems = cartItems.map((item) => {
-      index++
-      return cartItemTemplate(item, index)
+      index++;
+      return cartItemTemplate(item, index);
     });
     productList.innerHTML = htmlItems.join("");
-  } 
-  catch (error) {
-    console.log(error.message)
-    productList.innerHTML = "<li class='cart-card divider'>An error occured.</li>";
+  } catch (error) {
+    console.log(error.message);
+    productList.innerHTML =
+      "<li class='cart-card divider'>An error occured.</li>";
   }
 }
 
-function cartItemTemplate(item,num) {
+function cartItemTemplate(item, num) {
   const newItem = `<li class="cart-card divider" id="item-${num}">
   <a href="#" class="cart-card__image">
     <img
@@ -49,25 +53,25 @@ function cartItemTemplate(item,num) {
 renderCartContents();
 
 //
-function attachListenerForBtns(){
+function attachListenerForBtns() {
   let removeBtn = document.querySelectorAll(".remove");
-  removeBtn.forEach(btn => {
-    btn.addEventListener("click" ,()=>{
-      removeItem(btn)
-    })
-});
+  removeBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      removeItem(btn);
+    });
+  });
 }
-function removeItem(btn){
-    let itemId = btn.querySelector("span").textContent;
-    let uniqueId = btn.querySelector("span").getAttribute("id")
-    let localStorageItems = getLocalStorage("so-cart")
-    // const el =  localStorageItems.pop(uniqueId-1)
-    localStorageItems.splice(uniqueId-1,1)
-    setLocalStorage("so-cart",localStorageItems)
-    let li = document.querySelector(`#item-${uniqueId}`)
-    productList.removeChild(li)
-    renderCartContents()
-    attachListenerForBtns()
+function removeItem(btn) {
+  let itemId = btn.querySelector("span").textContent;
+  let uniqueId = btn.querySelector("span").getAttribute("id");
+  let localStorageItems = getLocalStorage("so-cart");
+  // const el =  localStorageItems.pop(uniqueId-1)
+  localStorageItems.splice(uniqueId - 1, 1);
+  setLocalStorage("so-cart", localStorageItems);
+  let li = document.querySelector(`#item-${uniqueId}`);
+  productList.removeChild(li);
+  renderCartContents();
+  attachListenerForBtns();
 }
 attachListenerForBtns();
 // let removeBtn = document.querySelectorAll(".remove");
@@ -84,5 +88,3 @@ attachListenerForBtns();
 //     renderCartContents()
 //   })
 // });
-
-
