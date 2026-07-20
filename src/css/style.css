@@ -251,7 +251,25 @@ button {
   content: "\00d7";
   font-size: 2rem;
 }
-
+.searchBar label {
+  position: relative;
+  display: block;
+  width: 80%;
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 8px;
+  border-radius: 15px;
+}
+.searchBar img {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+}
+.searchBar input {
+  border: 0;
+  outline: 0;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

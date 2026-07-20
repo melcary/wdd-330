@@ -1,6 +1,7 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-function convertToJson(res) {
+
+function convertToJson(res){
   if (res.ok) {
     return res.json();
   } else {
@@ -9,18 +10,20 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor() { }
-  
-   async getData(category) {
+  constructor() {}
+   async getData(category){
     const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await convertToJson(response);
-    
     return data.Result;
   }
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
-    const data = await convertToJson(response);
-    console.log(data.Result);
-    return data.Result;
+    if (response.ok) {
+      const data = await convertToJson(response);
+      return data.Result;
+    }
+    else{
+      console.log(response.status)
+    }
   }
 }

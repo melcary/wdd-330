@@ -28,19 +28,24 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
-  const htmlStrings = list.map(template);
- 
-  if (clear) {
+  if (clear){
     parentElement.innerHTML = "";
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  if(list.length > 1){
+    const htmlStrings = list.map(template);
+     parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+     return;
+  }
+      const htmlStrings =  template(list);
+      parentElement.insertAdjacentHTML(position, htmlStrings);
+      return;
 }
+
 
 export function renderWithTemplate(template, parentElement, data, callback){
   parentElement.innerHTML = template;
   if(callback) {
     callback(data);
-
   }
 }
 async function loadTemplate(path) {
