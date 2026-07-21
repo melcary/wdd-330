@@ -19,14 +19,22 @@ export default class ProductList{
       this.listElement = listElement;
    }
     async init(){
-       const list = await this.dataSource.getData(this.category);
-    this.renderList(list);
-    document.querySelector(".title").textContent = this.category;
+     const list = await this.dataSource.getData(this.category);
+     this.renderList(list);
+     document.querySelector(".title").textContent = this.category;
    }
    renderList(listOfProducts){
        renderListWithTemplate(productCardTemplate,this.listElement,listOfProducts,"afterbegin")
-      //  populatedElementList.forEach(element => {
-      //     this.listElement.innerHTML += element;
-      //  });
+   }
+   async renderSearchResults(productId){
+      const data = await this.dataSource.findProductById(productId);
+      if(data){
+           renderListWithTemplate(productCardTemplate,this.listElement,data,"afterbegin",true)
+      }
+      else{
+         this.listElement.innerHTML = `
+         <p>Not found</p>
+         <p>No search result matches query</p>`
+      }
    }
 }

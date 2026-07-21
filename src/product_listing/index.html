@@ -11,6 +11,22 @@
   <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
+      <form method="get" class="searchBar">
+        <label>
+          <input
+            type="text"
+            id="search"
+            name="product-id"
+            placeholder="Search by Id e.g 543DR"
+          />
+          <img
+            src="../images/search.svg"
+            alt="search icon"
+            loading="lazy"
+            id="searchIcon"
+          />
+        </label>
+      </form>
       <section class="products">
         <h2>Top Products: <span class="title highlight"></span></h2>
         <ul class="product-list"></ul>
