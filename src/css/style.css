@@ -270,6 +270,9 @@ button {
   border: 0;
   outline: 0;
 }
+.cart-total.show{
+  display: block;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
