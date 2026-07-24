@@ -17,38 +17,48 @@
       
     </header>
 
-    <main class="divider">
+    <main class="divider" id="add">
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
-      <section>
-        <form method="get">
+      <section class="second">
+        <form method="get" id="checkOut">
            <fieldset>
             <legend>Personal Information</legend>
-          <label for="username">First Name<input type="text" name="fname" id="username" title="First name" required></label>
-          <label for="lastname">Last Name<input type="text" name="lname" id="lastname" title="Last Name" required></label>
+          <label for="firstname">First Name</label>
+          <input type="text" name="fname" id="firstname" title="First name" required>
+          <label for="lastname">Last Name</label>
+          <input type="text" name="lname" id="lastname" title="Last Name" required>
            </fieldset>
+
            <fieldset>
             <legend>Address</legend>
-            <label for="address">Street Address <input type="text" id="address" name="address" title="Street Address" required></label>
-            <label for="city">City<input type="text" name="city" id="city" title="city" required></label>
-            <label for="state">State<input type="text" name="state" id="state" title="state" required></label>
-            <label for="zip">Zip Code <input type="number" name="zip" id="zip" title="zipcode" required></label>
+            <label for="address">Street Address </label>
+            <input type="text" id="address" name="street" title="Street Address" required>
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" title="city" required>
+            <label for="state">State</label>
+            <input type="text" name="state" id="state" title="state" required>
+            <label for="zip">Zip Code </label>
+            <input type="text" name="zip" id="zip" title="zipcode" required>
            </fieldset>
+
            <fieldset>
             <legend>Payment</legend>
-            <label for="cardNumber">Card Number<input type="number" title="credit card number" id="cardNumber" name="cardNumber" required></label>
-            <label for="exp">Expiration Date<input type="date" name="expiration" id="exp" required></label>
-            <label for="code">CVV<input type="number" name="code" maxlength="3" id="code" title="security code" required></label>
-            <input type="text" name="order-date" id="order-date" hidden>
+            <label for="cardNumber">Card Number</label>
+            <input type="string" title="credit card number" id="cardNumber" name="cardNumber" required>
+            <label for="exp">Expiration Date</label>
+            <input type="text" name="expiration" id="exp" required>
+            <label for="code">CVV</label>
+            <input type="text" name="code" maxlength="3" id="code" title="security code" required>
            </fieldset>
-           <button>Submit Order</button>
+           <button id="submit">Place Order</button>
         </form>
       </section>
       <section class="order-summary">
         <h2>Order Summary </h2>
         <p>SubTotal: <span id="subtotal"></span></p>
-        <p>Total Ordered Items: <span id="itemNum"></span></p>
+        <p>Total Order Items: <span id="itemNum"></span></p>
         <p>Tax: <span id="tax"></span></p>
         <p>Shipping Fee: <span id="ShippingFee"></span></p>
         <p>Total Amount: <span id="totalamt"></span></p>
