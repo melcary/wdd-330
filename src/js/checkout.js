@@ -13,5 +13,13 @@ document.querySelector("#zip").addEventListener("blur", () => {
 });
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  orderSummary.Checkout(document.querySelector("#checkOut"));
+
+  const myForm = document.forms[0];
+  const chk_status = myForm.checkValidity();
+
+  myForm.reportValidity();
+
+  if (chk_status) {
+    orderSummary.Checkout();
+  }
 });
