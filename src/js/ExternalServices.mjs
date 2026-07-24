@@ -5,11 +5,13 @@ function convertToJson(res){
   if (res.ok) {
     return res.json();
   } else {
+    console.log(res.status)
+    console.log( res.text())
     throw new Error("Bad Response");
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {}
    async getData(category){
     const response = await fetch(`${baseURL}products/search/${category}`);
@@ -25,5 +27,15 @@ export default class ProductData {
     else{
       console.log(response.status)
     }
+  }
+  async checkout(payload){
+      const data = await fetch(`${baseURL}checkout`,{
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          "content-type": "application/json"
+        }
+      })
+      return convertToJson(data)
   }
 }

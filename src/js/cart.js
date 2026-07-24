@@ -6,6 +6,8 @@ import {
 loadHeaderFooter();
 
 //
+let checkoutBtn = document.createElement("button");
+let cartFooter = document.querySelector(".cart-footer");
 let cartTotal = document.querySelector(".cart-total");
 let amount = document.querySelector("#amount");
 let totalPrice = 0;
@@ -29,6 +31,7 @@ function renderCartContents() {
     });
     productList.innerHTML = htmlItems.join("");
     amount.innerHTML = `$${totalPrice}`;
+
     cartTotal.classList.add("show");
   } catch (Error) {
     console.log(Error.message);
@@ -84,3 +87,12 @@ function removeItem(btn) {
 }
 attachListenerForBtns();
 
+function checkout() {
+  checkoutBtn.textContent = "checkout";
+  cartFooter.appendChild(checkoutBtn);
+}
+checkout();
+
+checkoutBtn.addEventListener("click", () => {
+  window.location.href = "../checkout/index.html";
+});
